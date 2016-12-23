@@ -334,46 +334,46 @@ void loop() {
     writestr(buf, 16);
   }else if (buttonMode == MODE_LOCAL){
     String tstr = String("");
-    if (now.hour()<9){
+    if (now.hour()<10){
     tstr = tstr+  String("0");
     }
     tstr = tstr+String(now.hour());
-    if (now.minute()<9){
+    if (now.minute()<10){
     tstr = tstr+  String("0");
     }
     tstr = tstr+ String(now.minute());
-    if (now.second()<9){
+    if (now.second()<10){
     tstr = tstr+  String("0");
     }
     tstr = tstr+ String(now.second());
-    tstr = tstr+ String("   cet");
+    tstr = tstr+ String("   utc");
     tstr.toCharArray(buf, 16);
     
    
     writestr(buf, 16);
-    //matrix.displaybuffer[1] = matrix.displaybuffer[1] | 128;
-    //matrix.displaybuffer[4] = matrix.displaybuffer[4] | 128;
+    matrix.displaybuffer[1] = matrix.displaybuffer[1] | 128; //dots
+    matrix.displaybuffer[3] = matrix.displaybuffer[3] | 128;
     
   }else if (buttonMode == MODE_UTC){
-    DateTime past (now - TimeSpan(0,1,0,0));
+    DateTime past (now + TimeSpan(0,1,0,0));
     String tstr = String("");
-    if (past.hour()<9){
+    if (past.hour()<10){
     tstr = tstr+  String("0");
     }
     tstr = tstr+String(past.hour());
-    if (past.minute()<9){
+    if (past.minute()<10){
     tstr = tstr+  String("0");
     }
     tstr = tstr+ String(past.minute());
-    if (past.second()<9){
+    if (past.second()<10){
     tstr = tstr+  String("0");
     }
     tstr = tstr+ String(past.second());
-    tstr = tstr+ String("   utc");
+    tstr = tstr+ String("   cet");
     tstr.toCharArray(buf, 16);
     writestr(buf, 16);
-    //matrix.displaybuffer[1] = matrix.displaybuffer[1] | 128;
-    //matrix.displaybuffer[4] = matrix.displaybuffer[4] | 128;
+    matrix.displaybuffer[1] = matrix.displaybuffer[1] | 128; //dots
+    matrix.displaybuffer[3] = matrix.displaybuffer[3] | 128;
     
   }
 
